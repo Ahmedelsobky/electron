@@ -192,6 +192,11 @@ gn-build-steps: &gn-build-steps
           cd src
           ninja -C out/Default electron:electron_app
     - run:
+        name: Build dist.zip
+        command: |
+          cd src
+          ninja -C out/Default electron:electron_dist_zip
+    - run:
         name: Check sccache stats after build
         command: $SCCACHE_WRAPPER -s
     - run:
@@ -216,6 +221,8 @@ gn-build-steps: &gn-build-steps
         path: src/junit
     - store_artifacts:
         path: src/junit
+    - store_artifacts:
+        path: src/out/Default/dist.zip
 
 build-defaults: &build-defaults
   docker:
