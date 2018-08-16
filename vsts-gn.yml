@@ -62,7 +62,7 @@ phases:
   - bash: |
       cd src
       ninja -C out/Default electron:electron_dist_zip
-    name: Build_dist.zip
+    name: Build_dist_zip
     condition: and(succeeded(), eq(variables['ELECTRON_RELEASE'], '1'))
 
   - task: PublishTestResults@2
